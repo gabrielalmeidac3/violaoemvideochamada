@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="apple-touch-icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
+
+<link rel="icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
+
+
+    <title>Formulário Mentoria C3</title>
+<style>
+
+/* styles.css - lembrando que aqui o style está dentro do head, no outro formulário estava fora, qualquer coisa é só colcar dentro do head*/
+
+
+
+* {
+    box-sizing: border-box;
+
+line-height: 1.5
+}
+
+body {
+   background: radial-gradient(circle at top, rgba(255, 165, 0, 0.6), rgba(0, 0, 0, 0) 15%);
+    background-color: #000; /* Fundo escuro */
+    margin: 0;
+    padding: 0 7%; /* Adiciona espaço nas bordas */
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Fundo preto */
+    color: #fff; /* Fonte branca para contraste */
+   display: flex;
+    justify-content: center;
+    min-height: 100vh;
+
+
+
+
+
+
+
+}
+
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 0px;
+margin-top: 60px;
+    font-size: 30px;
+line-height: 1.2}
+
+
+.profile {
+margin-top: 80px;
+margin-bottom: 40px;
+}
+
+.textinho {
+text-align: justify;
+  margin-left: auto;
+    margin-right: auto;
+max-width: 500px; /* Limita a largura do conteúdo */
+margin-bottom: 0px;
+    margin: 0 auto; /* Centraliza horizontalmente */total */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 700px; /* Limita a largura do conteúdo */
+margin-bottom: 20px;
+}
+
+.footer {
+
+margin-top: 60px;
+color: gray
+}
+
+.subtexto {
+margin-bottom: 40px;
+}
+
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #2c2c2c; /* Fundo para campos */
+    color: #fff;
+    font-size: 1em;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #aaa; /* Placeholder mais sutil */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff8214; /*  Laranja */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+}
+
+
+
+.form-container {
+    background-color: #1c1c1c; /* Um tom de preto mais claro */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    margin: 0 auto; /* Centraliza a div no eixo horizontal */
+
+
+
+</style>
+</head>
+
+<body>
+<div class="main-container">
+<h2>Passou dos 40 anos e quer aprender a tocar músicas sertanejas antigas no violão? </h2> <p class="subtexto" style="font-size:20px; text-align: center;"> Aprenda de forma simples e sem teoria com aulas em videochamada </p>
+    <div class="form-container"> 
+        <form method="post" name="contact-form">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="Nome" placeholder="Digite seu nome" required pattern="[A-Za-zÀ-ÿ\s]+" oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');">
+
+
+
+            <label for="tel">WhastApp</label>
+            <input type="number" id="tel" name="WhatsApp" placeholder="Digite seu WhatsApp com DDD" required pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+
+
+            <button type="submit">Quero aprender</button>
+        </form>
+    </div>
+
+
+
+
+<div style="text-align: center" class="profile">
+    <img src="https://drive.google.com/thumbnail?id=1u2u_elC7bUv55PyGh4qYls1oxRpKRe-d" width="150" height="150" alt="Gabriel Almeida" class="profile-img" >
+    <p class="profile-name">Por Gabriel Almeida | @gabrielproposito</p>
+</div>
+<div class="textinho" style= "font-size: 16px;">
+<p>Já ajudei centenas de alunos a tocarem violão do zero.
+</p>
+<p>Hoje eles tocam músicas inteiras em rodas de amigos ou em casa.</p>
+<p>
+Tudo de forma simples e sem teoria. Espero ajudar você também.</p>
+</div>
+
+<div class="footer" style="font-size: 13px; text-align: center">
+    <p>© 2024 Gabriel Almeida. Todos os direitos reservados.</p>
+</div>
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
+
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwuGg4EwEeVDKh6Hfv5EaY0r_5vQUuwtxfTTUeHddBHp0PrjgSOCtxSRUE0VgWfMOY1/exec'
+
+const form = document.forms['contact-form']
+
+form.addEventListener('submit', e => {
+    e.preventDefault(); // Evita o envio padrão do formulário
+  
+    // Redireciona para uma página de agradecimento ou carregamento
+    window.location.href = "https://google.com";
+
+    // Continua processando o envio em segundo plano
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .catch(error => console.error('Erro!', error.message));
+});
+
+
+</script>
