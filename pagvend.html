@@ -3,65 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 
 <link rel="apple-touch-icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
 
 <link rel="icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
 
+ <script src="https://player.vimeo.com/api/player.js"></script>
 
     <title>Violão em Videochamada</title>
 <style>
 
-/* styles.css - lembrando que aqui o style está dentro do head, no outro formulário estava fora, qualquer coisa é só colcar dentro do head*/
 
-
-
-* {
-    box-sizing: border-box;
-
-line-height: 1.5
-}
 
 body {
-    margin: 0;
-    padding: 0 7%; /* Adiciona espaço nas bordas */
+    background: radial-gradient(circle at 50% -40%, rgba(255, 127, 0, 1) 10%, rgba(26, 26, 26, 1) 40%);
+    background-attachment: fixed;
+    min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
+    max-width: 1000px;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 8%;
+	padding-top: 0.3%;
+	padding-bottom: 1.8%;
+    justify-content: center; /* Centraliza no eixo vertical */
+    align-items: center; /* Centraliza no eixo horizontal */
     font-family: Arial, sans-serif;
-    background-color: #000; /* Fundo preto */
-    color: #fff; /* Fonte branca para contraste */
-   display: flex;
-    justify-content: center;
-    min-height: 100vh
-}
-
-
-
-h2 {
-    text-align: center;
-    margin-bottom: 0px;
-margin-top: 60px;
-    font-size: 40px;
-line-height: 1.2}
-
-
-.textinho {
-text-align: justify;
-  margin-left: auto;
-    margin-right: auto;
-max-width: 500px; /* Limita a largura do conteúdo */
-margin-bottom: 0px;
-    margin: 0 auto; /* Centraliza horizontalmente */total */
+    color: #fff;
+    text-align: center; /* Centraliza o texto internamente */
 }
 
 
 
 .main-container {
-    width: 100%;
-    max-width: 700px; /* Limita a largura do conteúdo */
-margin-bottom: 20px;
+margin: 0 auto;
+max-width: 600px;
+}
+
+h2 {
+    font-size: 34px;
+line-height: 1.2
 }
 
 .footer {
-
 margin-top: 60px;
 color: gray
 }
@@ -70,93 +53,324 @@ color: gray
 margin-bottom: 40px;
 }
 
+.ocultar {
+text-align: center;
+}
 
 
-
-
-button {
-    width: 100%;
+.button-compra {
+	width: 50%;
     padding: 10px;
-    background-color: #ff8214; /*  Laranja */    border: none;
+    background-color: #28a745;  border: none;
     border-radius: 5px;
     color: #fff;
-    font-size: 1em;
+    font-size: 1.2em;
     cursor: pointer;
 }
 
 
-button:hover {
-    background-color: #0056b3; /* Azul mais escuro no hover */
+.button-compra:hover {
+    background-color: #c46d16; /* Azul mais escuro no hover */
 }
 
+.vimeo-player {
+            position: relative;
+			max-width: 600px;
+            margin: 0 auto; /* Centraliza o vídeo horizontalmente */
+			aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
+			margin-bottom: 50px;
+			}
+			
+iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
+        }
+		
+.play-pause-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
 
+.overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+			aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
+            cursor: pointer; /* Usado para indicar que a área é clicável */
+        }
 
+.vimeo-player:hover .play-pause-btn {
+            display: block; /* Display when hovering over the player */
+        }
 
+.button-play {
+            background-color: rgba(255, 165, 0, 0.7); /* Laranja translúcido */
+        }
+		
+.produto-container {
+            text-align: center;
+        }
+        .detalhes {
+            margin-bottom: 10px;
+        }
+        .detalhes p {
+            margin: 5px 0;
+        }
+		ul {
+		text-align: left;
+		display: inline-block;		
+		}
+        .preco-promocional {
+            color: #64ff4d;
+            font-size: 2em;
+            font-weight: bold;
+        }
 
+.fullscreen-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.fullscreen-btn svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+}
+
+.fullscreen-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ocultar{
+
+display: none;
+
+}
 
 </style>
+
 </head>
 
 <body>
+
+
+<h2 style="margin-bottom: -1%;">Passou dos 40 anos e quer aprender a tocar músicas sertanejas antigas no violão?</h2>
+
+<p class="subtexto" style="font-size:20px; text-align: center; margin-bottom: 10px;">Aprenda de forma simples e sem teoria com aulas em videochamada</p>
+
 <div class="main-container">
-<h2>Passou dos 40 anos e quer aprender a tocar músicas sertanejas antigas no violão?</h2> <p class="subtexto" style="font-size:20px; text-align: center;">De forma simples e sem teoria com aulas em videochamada</p>
 
-<h4>Assista o vídeo abaixo</h4>
-   
-	
-	<iframe width=100% height=100% src="https://www.youtube.com/embed/nLA5RZic0Bk?controls=0&autoplay=0&rel=0&modestbranding=1"></iframe>
+<p style="text-align:center; color:gray;">Aperte o play e assista o vídeo abaixo</p>
 
-<h2> videoteste</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nLA5RZic0Bk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="vimeo-player">
+    <iframe src="https://player.vimeo.com/video/1039432899?autoplay=1&controls=0" frameborder="0" allow="autoplay;"></iframe>
+    <div class="overlay"></div>
+    <button class="play-pause-btn button-play">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 22V2L21 12L3 22Z" fill="white"/>
+        </svg>
+    </button>
+    <button class="fullscreen-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3H10V5H5V10H3V3ZM21 3V10H19V5H14V3H21ZM21 21H14V19H19V14H21V21ZM3 21V14H5V19H10V21H3Z" fill="white"/></svg>
+	</button>
+</div>
 
-<h2> videoteste2</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nLA5RZic0Bk?controls=0&autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class= "ocultar">
 
-    <iframe 
-        src="https://www.youtube.com/embed/nLA5RZic0Bk?controls=0&showinfo=0&rel=0&modestbranding=1&autoplay=1&mute=1" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen>
-    </iframe>
+<h2 style="font-size: 1.5em;">Depoimentos</h2>
 
-
-<div class= "mais informações">
-
+<div class="vimeo-player">
+    <iframe src="https://player.vimeo.com/video/1039464673?autoplay=1&controls=0" frameborder="0" allow="autoplay;"></iframe>
+    <div class="overlay"></div>
+    <button class="play-pause-btn button-play">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 22V2L21 12L3 22Z" fill="white"/>
+        </svg>
+    </button>
+    <button class="fullscreen-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 3H10V5H5V10H3V3ZM21 3V10H19V5H14V3H21ZM21 21H14V19H19V14H21V21ZM3 21V14H5V19H10V21H3Z" fill="white"/>
+</svg>
+</button>
 </div>
 
 
+<h2 style="font-size: 1.2em; margin-bottom: 10%;">O que você vai receber de fato:</h2>
 
+<h2 style="font-size: 1.2em;">1. Aulas em videochamada</h2>
 
+<img src="https://lh3.googleusercontent.com/d/1rXNX0-0Qz7JzfZlojXya-4fLz6n4nT4s=s800" style="width: 70%; margin-bottom: 10%;">
+
+<h2 style="font-size: 1.2em;">2. Grupo de Apoio no WhatsApp</h2>
+
+<img src="https://lh3.googleusercontent.com/d/1KASBQ1vWaI80_pzY3yxx7M5Po_IDsGll=s800" style="width: 70%; margin-bottom: 10%;">
+
+<h2 style="font-size: 1.2em;">3. Curso Completo - Do Zero ao Repertório</h2>
+
+<img src="https://lh3.googleusercontent.com/d/1mv0RsycdemYd_-pw8gZ1hi79hztve4HK" style="width: 70%; margin-bottom: 10%;">
+
+    <div class="produto-container">
+        <div class="detalhes">
+            <p style="font-size: 1.2em; font-weight: bold;">Resumo:</p>
+            <img src="https://lh3.googleusercontent.com/d/1m30KFHVinuj4O9AkIYs4n0mWRGpi7ioN=s800" style="width: 60%; margin-top: 10px;">
+            <ul style="list-style-type: none; padding: 0;">
+                <li>✅ Aulas em videochamada toda semana</li>
+                <li>✅ Grupo de apoio no WhatsApp</li>
+				<li>✅ Curso completo - Do Zero ao Repertório</li>
+                <li>✅ Garantia de 7 dias</li>
+            </ul>
+			<p>
+			  <span style="color: white;">de </span>
+			  <span style="color: red; text-decoration: line-through;">R$ 80,00 / mês</span>
+			  <span> por apenas</span>
+			</p>
+			<p class="preco-promocional" style="margin-bottom: 0px;">R$ 10,00</p>
+			<p style="font-size: 1em; margin-bottom: 5%;">o primeiro mês</p>
+        </div>
+		<a href="https://go.perfectpay.com.br/PPU38CPA7FO" style="text-decoration:none" target="_top"><button class="button-compra">Eu quero</button></a>
+    </div>
+
+<h2 style="font-size: 1.2em; margin-top: 10%;">Porque é tão barato?</h2>
+<p>O primeiro mês vai ficar por só R$ 10,00 pra você conhecer de forma mais fácil.<br>E se você gostar, você continua pelo preço normal de R$ 80,00 por mês.</p>
 
 <div class="footer" style="font-size: 13px; text-align: center">
     <p>© 2024 Gabriel Almeida. Todos os direitos reservados.</p>
 </div>
 
+</div>
 
-
-</div> /* div main container*/
-
-
-
-
+</div>
 
 </body>
+
 </html>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyR-KQ4IqwQ9sX-4ImKLqOwFnUAg9K7Fd8Gh0uz1yLgZyHtpvCWbFXSmeA-P-cPW7Jy4Q/exec'
 
-const form = document.forms['contact-form']
+document.querySelectorAll('.vimeo-player').forEach(function(playerContainer) {
+    var fullscreenButton = playerContainer.querySelector('.fullscreen-btn');
 
-form.addEventListener('submit', e => {
-    e.preventDefault(); // Evita o envio padrão do formulário
-  
-    // Redireciona para uma página de agradecimento ou carregamento
-    window.location.href = "https://google.com";
-
-    // Continua processando o envio em segundo plano
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .catch(error => console.error('Erro!', error.message));
+    fullscreenButton.addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+            // Entrar no modo de tela cheia
+            playerContainer.requestFullscreen().then(() => {
+                // Alterar a orientação para paisagem
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape-primary').catch(err => {
+                        console.warn('Falha ao bloquear a orientação:', err);
+                    });
+                }
+            }).catch(err => {
+                console.log(`Erro ao entrar em tela cheia: ${err.message}`);
+            });
+        } else {
+            // Sair do modo de tela cheia e desbloquear orientação
+            document.exitFullscreen().then(() => {
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock();
+                }
+            }).catch(err => {
+                console.log(`Erro ao sair de tela cheia: ${err.message}`);
+            });
+        }
+    });
 });
+
+
+
+var tmin = 0;
+var tseg = 2;
+  
+var tpitch = (tmin * 60000) + (tseg * 1000);
+setTimeout('show()', tpitch);
+console.log('pitch em:', tpitch,'ms - totalizando',tmin,'min','e',tseg,'seg'); 
+function show(){
+var list = document.getElementsByClassName('ocultar');
+for (var i = 0; i < list.length; i++) {
+    
+    list[i].style.display = 'block';
+    }
+}
+
+src="https://player.vimeo.com/api/player.js"
+
+    // Função para inicializar todos os players do Vimeo
+function initVimeoPlayers() {
+    // Seleciona todos os containers de vídeo com a classe 'vimeo-player'
+    var players = document.querySelectorAll('.vimeo-player');
+
+    players.forEach(function(container) {
+        var iframe = container.querySelector('iframe');
+        var overlay = container.querySelector('.overlay');
+        var toggleButton = container.querySelector('.play-pause-btn');
+
+        // Cria um player para o iframe atual
+        var player = new Vimeo.Player(iframe);
+
+        // Pausa o vídeo após 500ms
+        setTimeout(() => {
+            player.pause();
+        }, 500);
+
+        // Configura eventos para alternar entre play/pause
+        player.on('play', function() {
+            toggleButton.style.display = 'none'; // Esconde o botão quando o vídeo está tocando
+        });
+
+        player.on('pause', function() {
+            toggleButton.style.display = 'block'; // Mostra o botão quando o vídeo é pausado
+        });
+
+        // Adiciona eventos de clique ao overlay e botão
+        overlay.addEventListener('click', function() {
+            player.getPaused().then(function(paused) {
+                if (paused) {
+                    player.play();
+                } else {
+                    player.pause();
+                }
+            });
+        });
+
+        toggleButton.addEventListener('click', function() {
+            player.getPaused().then(function(paused) {
+                if (paused) {
+                    player.play();
+                } else {
+                    player.pause();
+                }
+            });
+        });
+    });
+}
+
+// Inicializar os players assim que a página carregar
+window.onload = initVimeoPlayers;
 
 
 </script>
