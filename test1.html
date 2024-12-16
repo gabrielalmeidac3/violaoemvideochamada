@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pausar e Despausar Vimeo</title>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        iframe {
+            max-width: 100%;
+            border: none;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Embed do vídeo Vimeo -->
+    <iframe id="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+    <!-- Botão de pausa/reprodução -->
+    <button id="toggle-button">Carregando...</button>
+
+    <script>
+        // Obtém o iframe e inicializa o player do Vimeo
+        const iframe = document.getElementById('vimeo-player');
+        const player = new Vimeo.Player(iframe);
+
+        // Referência ao botão
+        const toggleButton = document.getElementById('toggle-button');
+
+        // Atualiza o botão conforme o estado atual do vídeo
+        function updateButton() {
+            player.getPaused().then(paused => {
+                toggleButton.textContent = paused ? 'Play' : 'Pause';
+            }).catch(error => console.error('Erro ao verificar estado do vídeo:', error));
+        }
+
+        // Adiciona evento ao botão
+        toggleButton.addEventListener('click', () => {
+            player.getPaused().then(paused => {
+                if (paused) {
+                    player.play().catch(error => console.error('Erro ao reproduzir o vídeo:', error));
+                } else {
+                    player.pause().catch(error => console.error('Erro ao pausar o vídeo:', error));
+                }
+            }).catch(error => console.error('Erro ao verificar estado do vídeo:', error));
+        });
+
+        // Atualiza o botão ao carregar o player
+        player.ready().then(updateButton);
+
+        // Sincroniza o botão com eventos do player
+        player.on('play', updateButton);
+        player.on('pause', updateButton);
+    </script>
+</body>
+</html>
