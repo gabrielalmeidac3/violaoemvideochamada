@@ -3,92 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pausar e Despausar Vimeo</title>
+    <title>Vimeo Pause/Play Button</title>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        iframe {
-            max-width: 100%;
-            border: none;
-        }
-        button {
-            margin-top: 20px;
+        #playPauseButton {
             padding: 10px 20px;
             font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+        }
+        #playPauseButton:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
-    <!-- Embed do vídeo Vimeo -->
-    <iframe id="vimeo-player" src="https://player.vimeo.com/video/76979871" width="640" height="360" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-    <!-- Botão de pausa/reprodução -->
-    <button id="toggle-button" disabled>Carregando...</button>
+<div style="max-width: 640px; margin: auto;">
+    <!-- Vimeo iframe -->
+    <div id="vimeoPlayer"></div>
 
-    <script>
-        // Obtém o iframe e inicializa o player do Vimeo
-        const iframe = document.getElementById('vimeo-player');
-        const player = new Vimeo.Player(iframe);
+    <!-- Play/Pause Button -->
+    <button id="playPauseButton" disabled>Play</button>
+</div>
 
-        // Referência ao botão
-        const toggleButton = document.getElementById('toggle-button');
+<script>
+    // Configuração do Vimeo Player
+    const iframe = document.createElement('iframe');
+    iframe.src = "https://player.vimeo.com/video/VIDEO_ID?api=1&background=0";
+    iframe.width = "640";
+    iframe.height = "360";
+    iframe.frameBorder = "0";
+    iframe.allow = "autoplay; fullscreen; picture-in-picture";
+    iframe.allowFullscreen = true;
+    document.getElementById('vimeoPlayer').appendChild(iframe);
 
-        // Atualiza o estado do botão com base no estado atual do player
-        function updateButton() {
-            player.getPaused().then(paused => {
-                toggleButton.textContent = paused ? 'Play' : 'Pause';
-                toggleButton.disabled = false; // Habilita o botão após atualização
-            }).catch(error => console.error('Erro ao verificar estado do vídeo:', error));
+    // Inicializar o player do Vimeo
+    const player = new Vimeo.Player(iframe);
+
+    // Referência ao botão Play/Pause
+    const playPauseButton = document.getElementById('playPauseButton');
+
+    // Ativar o botão quando o vídeo carregar
+    player.on('loaded', () => {
+        playPauseButton.disabled = false;
+    });
+
+    // Alternar entre play e pause
+    let isPlaying = false;
+
+    playPauseButton.addEventListener('click', async () => {
+        try {
+            if (isPlaying) {
+                await player.pause();
+                playPauseButton.textContent = 'Play';
+            } else {
+                await player.play();
+                playPauseButton.textContent = 'Pause';
+            }
+            isPlaying = !isPlaying;
+        } catch (error) {
+            console.error('Erro ao alternar o estado do vídeo:', error);
         }
+    });
+</script>
 
-        // Configura o evento de clique no botão
-        toggleButton.addEventListener('click', () => {
-            toggleButton.disabled = true; // Desabilita temporariamente o botão para evitar cliques rápidos
-            player.getPaused().then(paused => {
-                if (paused) {
-                    player.play().then(() => updateButton()).catch(error => {
-                        console.error('Erro ao reproduzir o vídeo:', error);
-                        updateButton(); // Reabilita o botão mesmo em caso de erro
-                    });
-                } else {
-                    player.pause().then(() => updateButton()).catch(error => {
-                        console.error('Erro ao pausar o vídeo:', error);
-                        updateButton(); // Reabilita o botão mesmo em caso de erro
-                    });
-                }
-            }).catch(error => {
-                console.error('Erro ao verificar estado do vídeo:', error);
-                toggleButton.disabled = false; // Reabilita o botão em caso de erro
-            });
-        });
-
-        // Aguarda o player estar pronto e atualiza o botão
-        player.ready().then(() => {
-            console.log('Player pronto');
-            updateButton(); // Atualiza o botão com o estado atual
-        }).catch(error => {
-            console.error('Erro ao inicializar o player:', error);
-            toggleButton.textContent = 'Erro';
-        });
-
-        // Sincroniza eventos de reprodução e pausa para garantir consistência
-        player.on('play', updateButton);
-        player.on('pause', updateButton);
-
-        // Trata o evento de carregamento do player para maior confiabilidade
-        player.on('loaded', () => {
-            console.log('Vídeo carregado');
-            updateButton(); // Atualiza o botão quando o vídeo está carregado
-        });
-    </script>
 </body>
 </html>
