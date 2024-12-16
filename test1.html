@@ -1,75 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vimeo Pause/Play Button</title>
-    <script src="https://player.vimeo.com/api/player.js"></script>
-    <style>
-        #playPauseButton {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #playPauseButton:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Botões Play e Pause para Vimeo</title>
+<style>
+  .vimeo-controls {
+    display: flex;
+    gap: 10px;
+  }
+
+  .vimeo-control-btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .vimeo-control-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+</style>
 </head>
 <body>
 
-<div style="max-width: 640px; margin: auto;">
-    <!-- Vimeo iframe -->
-    <div id="vimeoPlayer"></div>
-
-    <!-- Play/Pause Button -->
-    <button id="playPauseButton" disabled>Play</button>
+<div class="vimeo-controls">
+  <button id="playBtn" class="vimeo-control-btn">Play</button>
+  <button id="pauseBtn" class="vimeo-control-btn" disabled>Pause</button>
 </div>
 
+<iframe src="https://player.vimeo.com/video/123456789" id="vimeoPlayer" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
 <script>
-    // Configuração do Vimeo Player
-    const iframe = document.createElement('iframe');
-    iframe.src = "https://player.vimeo.com/video/76979871?api=1&background=0";
-    iframe.width = "640";
-    iframe.height = "360";
-    iframe.frameBorder = "0";
-    iframe.allow = "autoplay; fullscreen; picture-in-picture";
-    iframe.allowFullscreen = true;
-    document.getElementById('vimeoPlayer').appendChild(iframe);
+  const playerElement = document.getElementById('vimeoPlayer');
+  const player = new Vimeo.Player(playerElement);
 
-    // Inicializar o player do Vimeo
-    const player = new Vimeo.Player(iframe);
+  const playBtn = document.getElementById('playBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
 
-    // Referência ao botão Play/Pause
-    const playPauseButton = document.getElementById('playPauseButton');
-
-    // Ativar o botão quando o vídeo carregar
-    player.on('loaded', () => {
-        playPauseButton.disabled = false;
+  playBtn.addEventListener('click', function() {
+    player.play().then(() => {
+      playBtn.disabled = true;
+      pauseBtn.disabled = false;
+    }).catch(function(error) {
+      console.error('Erro ao iniciar o vídeo:', error);
     });
+  });
 
-    // Alternar entre play e pause
-    let isPlaying = false;
-
-    playPauseButton.addEventListener('click', async () => {
-        try {
-            if (isPlaying) {
-                await player.pause();
-                playPauseButton.textContent = 'Play';
-            } else {
-                await player.play();
-                playPauseButton.textContent = 'Pause';
-            }
-            isPlaying = !isPlaying;
-        } catch (error) {
-            console.error('Erro ao alternar o estado do vídeo:', error);
-        }
+  pauseBtn.addEventListener('click', function() {
+    player.pause().then(() => {
+      pauseBtn.disabled = true;
+      playBtn.disabled = false;
+    }).catch(function(error) {
+      console.error('Erro ao pausar o vídeo:', error);
     });
+  });
 </script>
 
 </body>
