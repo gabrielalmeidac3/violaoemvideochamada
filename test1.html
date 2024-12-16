@@ -32,6 +32,7 @@
 
 <iframe src="https://player.vimeo.com/video/123456789" id="vimeoPlayer" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
+<script src="https://player.vimeo.com/api/player.js"></script>
 <script>
   const playerElement = document.getElementById('vimeoPlayer');
   const player = new Vimeo.Player(playerElement);
@@ -39,15 +40,17 @@
   const playBtn = document.getElementById('playBtn');
   const pauseBtn = document.getElementById('pauseBtn');
 
-  playBtn.addEventListener('click', function() {
+  // Função para tocar o vídeo automaticamente
+  function playVideo() {
     player.play().then(() => {
       playBtn.disabled = true;
       pauseBtn.disabled = false;
     }).catch(function(error) {
       console.error('Erro ao iniciar o vídeo:', error);
     });
-  });
+  }
 
+  playBtn.addEventListener('click', playVideo);
   pauseBtn.addEventListener('click', function() {
     player.pause().then(() => {
       pauseBtn.disabled = true;
@@ -55,6 +58,11 @@
     }).catch(function(error) {
       console.error('Erro ao pausar o vídeo:', error);
     });
+  });
+
+  // Iniciar o vídeo automaticamente ao carregar a página
+  player.ready().then(() => {
+    playVideo();
   });
 </script>
 
