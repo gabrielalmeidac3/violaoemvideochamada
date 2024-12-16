@@ -42,28 +42,44 @@
         // Referência ao botão
         const toggleButton = document.getElementById('toggle-button');
 
-        // Atualiza o botão conforme o estado atual do vídeo
+        // Inicializa o estado do botão
+        toggleButton.textContent = 'Carregando...';
+
+        // Atualiza o estado do botão de forma síncrona e sem inconsistências
         function updateButton() {
             player.getPaused().then(paused => {
                 toggleButton.textContent = paused ? 'Play' : 'Pause';
+                toggleButton.disabled = false; // Garante que o botão esteja habilitado
             }).catch(error => console.error('Erro ao verificar estado do vídeo:', error));
         }
 
-        // Adiciona evento ao botão
+        // Configura o evento de clique no botão
         toggleButton.addEventListener('click', () => {
+            // Desabilita o botão temporariamente para evitar múltiplos cliques rápidos
+            toggleButton.disabled = true;
+
             player.getPaused().then(paused => {
                 if (paused) {
-                    player.play().catch(error => console.error('Erro ao reproduzir o vídeo:', error));
+                    player.play().then(() => updateButton()).catch(error => {
+                        console.error('Erro ao reproduzir o vídeo:', error);
+                        updateButton(); // Reabilita o botão mesmo se houver erro
+                    });
                 } else {
-                    player.pause().catch(error => console.error('Erro ao pausar o vídeo:', error));
+                    player.pause().then(() => updateButton()).catch(error => {
+                        console.error('Erro ao pausar o vídeo:', error);
+                        updateButton(); // Reabilita o botão mesmo se houver erro
+                    });
                 }
-            }).catch(error => console.error('Erro ao verificar estado do vídeo:', error));
+            }).catch(error => {
+                console.error('Erro ao verificar estado do vídeo:', error);
+                toggleButton.disabled = false; // Reabilita o botão caso haja erro
+            });
         });
 
-        // Atualiza o botão ao carregar o player
+        // Atualiza o botão assim que o player estiver pronto
         player.ready().then(updateButton);
 
-        // Sincroniza o botão com eventos do player
+        // Sincroniza com eventos de reprodução e pausa
         player.on('play', updateButton);
         player.on('pause', updateButton);
     </script>
