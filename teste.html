@@ -1,72 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="orientation" content="landscape">
-    <title>Forçar Orientação Horizontal</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: black;
-            color: white;
-            overflow: hidden;
-        }
-        .landscape-warning {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            color: white;
-            font-size: 24px;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-    </style>
+    <title>Alunos Passando</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="video-container">
-        <video id="videoPlayer" controls autoplay width="100%" height="100%">
-            <source src="alunospassando.mp4" type="video/mp4">
-            Seu navegador não suporta vídeos HTML5.
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Bem-vindo ao Site "Alunos Passando"</h1>
+        <video controls>
+            <source src="assets/alunospassando.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento vídeo.
         </video>
-    </div>
-    <div class="landscape-warning" id="landscapeWarning">
-        Por favor, gire o dispositivo para visualização horizontal.
-    </div>
-
-    <script>
-        // Função para verificar a orientação do dispositivo
-        function checkOrientation() {
-            const warning = document.getElementById('landscapeWarning');
-            if (window.innerHeight > window.innerWidth) {
-                // Mostra o aviso se estiver em retrato
-                warning.style.display = 'flex';
-            } else {
-                // Oculta o aviso se estiver em paisagem
-                warning.style.display = 'none';
-            }
-        }
-
-        // Adiciona eventos para verificar a orientação
-        window.addEventListener('resize', checkOrientation);
-        window.addEventListener('orientationchange', checkOrientation);
-
-        // Verifica a orientação inicial
-        document.addEventListener('DOMContentLoaded', () => {
-            checkOrientation();
-        });
-    </script>
+    </main>
+    <footer>
+        <p>&copy; 2024 Alunos Passando. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
