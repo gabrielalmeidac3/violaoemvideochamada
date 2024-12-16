@@ -83,7 +83,8 @@ text-align: center;
 			margin-bottom: 50px;
 			}
 			
-iframe { 
+iframe {
+        pointer-events: none; /* Previne que o iframe bloqueie cliques */    
 	position: absolute;
             top: 0;
             left: 0;
@@ -110,6 +111,7 @@ aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
             top: 0;
             left: 0;
             width: 100%;
+	    z-index: 10; /* Garante que esteja acima do iframe */
 	    aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
             cursor: pointer; /* Usado para indicar que a área é clicável */
         }
@@ -274,18 +276,7 @@ display: none;
 
 <script>
 
-overlay.addEventListener('click', handlePlayPause);
-overlay.addEventListener('touchstart', handlePlayPause);
 
-function handlePlayPause() {
-    player.getPaused().then(function(paused) {
-        if (paused) {
-            player.play();
-        } else {
-            player.pause();
-        }
-    });
-}
 
 	
 document.querySelectorAll('.vimeo-player').forEach(function(playerContainer) {
@@ -362,16 +353,36 @@ function initVimeoPlayers() {
             toggleButton.style.display = 'block'; // Mostra o botão quando o vídeo é pausado
         });
 
-        // Adiciona eventos de clique ao overlay e botão
-        overlay.addEventListener('click', function() {
-            player.getPaused().then(function(paused) {
-                if (paused) {
-                    player.play();
-                } else {
-                    player.pause();
-                }
-            });
-        });
+        let touchHandled = false;
+
+overlay.addEventListener('touchstart', function (event) {
+    touchHandled = true;
+    event.preventDefault(); // Previne o disparo do evento 'click'
+    handlePlayPause();
+}, { passive: false });
+
+overlay.addEventListener('click', function () {
+    if (!touchHandled) {
+        handlePlayPause();
+    }
+    touchHandled = false; // Reseta o flag após o clique
+});
+
+function handlePlayPause() {
+    player.getPaused().then(function (paused) {
+        if (paused) {
+            player.play();
+        } else {
+            player.pause();
+        }
+    });
+}
+
+
+        overlay.addEventListener('click', () => console.log('Overlay clicado'));
+        overlay.addEventListener('touchstart', () => console.log('Overlay tocado'));
+
+
 
         toggleButton.addEventListener('click', function() {
             player.getPaused().then(function(paused) {
@@ -384,6 +395,9 @@ function initVimeoPlayers() {
         });
     });
 }
+
+
+
 
 // Inicializar os players assim que a página carregar
 window.onload = initVimeoPlayers;
