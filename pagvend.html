@@ -14,7 +14,9 @@
     <title>Violão em Videochamada</title>
 <style>
 
-
+.ocultar {
+    display: none;
+}
 
 body {
     background: radial-gradient(circle at 50% -40%, rgba(255, 127, 0, 1) 10%, rgba(26, 26, 26, 1) 40%);
@@ -304,7 +306,7 @@ document.querySelectorAll('.vimeo-player').forEach(function(playerContainer) {
 
 
 var tmin = 0;
-var tseg = 2;
+var tseg = 20;
   
 var tpitch = (tmin * 60000) + (tseg * 1000);
 setTimeout('show()', tpitch);
