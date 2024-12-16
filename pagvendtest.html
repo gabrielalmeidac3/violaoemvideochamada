@@ -276,6 +276,20 @@ display: none;
 
 <script>
 
+overlay.addEventListener('click', handlePlayPause);
+overlay.addEventListener('touchstart', handlePlayPause);
+
+function handlePlayPause() {
+    player.getPaused().then(function(paused) {
+        if (paused) {
+            player.play();
+        } else {
+            player.pause();
+        }
+    });
+}
+
+	
 document.querySelectorAll('.vimeo-player').forEach(function(playerContainer) {
     var fullscreenButton = playerContainer.querySelector('.fullscreen-btn');
 
