@@ -3,341 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-
-<link rel="apple-touch-icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
-
-<link rel="icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
-
- <script src="https://player.vimeo.com/api/player.js"></script>
-
+    <link rel="apple-touch-icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
+    <link rel="icon" href="https://drive.google.com/thumbnail?id=1IvlHYTj5-1tZjdy8SkXrgNvWrJ1Xj6S1">
     <title>Violão em Videochamada</title>
-<style>
-
-.ocultar {
-    display: none;
-}
-
-body {
-    background: radial-gradient(circle at 50% -40%, rgba(255, 127, 0, 1) 10%, rgba(26, 26, 26, 1) 40%);
-	background-attachment: scroll;
-    min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
-    max-width: 1000px;
-    margin: 0 auto; /* Centraliza horizontalmente */
-    padding: 8%;
-	padding-top: 0.3%;
-	padding-bottom: 1.8%;
-    justify-content: center; /* Centraliza no eixo vertical */
-    align-items: center; /* Centraliza no eixo horizontal */
-    font-family: Arial, sans-serif;
-    color: #fff;
-    text-align: center; /* Centraliza o texto internamente */
-}
-
-
-
-.main-container {
-margin: 0 auto;
-max-width: 600px;
-}
-
-h2 {
-    font-size: 34px;
-line-height: 1.2
-}
-
-.footer {
-margin-top: 60px;
-color: gray
-}
-
-.subtexto {
-margin-bottom: 40px;
-}
-
-.ocultar {
-text-align: center;
-}
-
-
-.button-compra {
-	width: 50%;
-    padding: 10px;
-    background-color: #28a745;  border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 1.2em;
-    cursor: pointer;
-}
-
-
-.button-compra:hover {
-    background-color: #c46d16; /* Azul mais escuro no hover */
-}
-
-.vimeo-player {
-            position: relative;
-			max-width: 600px;
-            margin: 0 auto; /* Centraliza o vídeo horizontalmente */
-			aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
-			margin-bottom: 50px;
-			}
-			
-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
-        }
-		
-.play-pause-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-.overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-			aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
-            cursor: pointer; /* Usado para indicar que a área é clicável */
-        }
-
-.vimeo-player:hover .play-pause-btn {
-            display: block; /* Display when hovering over the player */
-        }
-
-.button-play {
-            background-color: rgba(255, 165, 0, 0.7); /* Laranja translúcido */
-        }
-		
-.produto-container {
+    <style>
+        body {
+            background: radial-gradient(circle at 50% -40%, rgba(255, 127, 0, 1) 10%, rgba(26, 26, 26, 1) 40%);
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 8%;
+            font-family: Arial, sans-serif;
+            color: #fff;
             text-align: center;
         }
-        .detalhes {
-            margin-bottom: 10px;
-        }
-        .detalhes p {
-            margin: 5px 0;
-        }
-		ul {
-		text-align: left;
-		display: inline-block;		
-		}
-        .preco-promocional {
-            color: #64ff4d;
-            font-size: 2em;
-            font-weight: bold;
+
+        .main-container {
+            margin: 0 auto;
+            max-width: 600px;
         }
 
-.fullscreen-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    padding: 8px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-}
+        .vimeo-player {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            margin-bottom: 50px;
+        }
 
-.fullscreen-btn svg {
-    fill: white;
-    width: 20px;
-    height: 20px;
-}
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-.fullscreen-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+        }
 
-.ocultar{
+        .fullscreen-btn svg {
+            fill: white;
+            width: 20px;
+            height: 20px;
+        }
 
-display: none;
-
-}
-
-</style>
-	
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1261048684985838');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1261048684985838&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-	
+        .fullscreen-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
-
 <body>
+    <h2 style="margin-bottom: -1%;">Passou dos 40 anos e quer aprender a tocar músicas sertanejas antigas no violão do zero?</h2>
+    <p class="subtexto" style="font-size:20px; text-align: center; margin-bottom: 10px;">Participe das aulas em videochamada</p>
 
+    <div class="main-container">
+        <p style="text-align:center; color:gray;">Aperte o play e assista o vídeo abaixo com os detalhes</p>
 
-<h2 style="margin-bottom: -1%;">Passou dos 40 anos e quer aprender a tocar músicas sertanejas antigas no violão do zero?</h2>
+        <div class="vimeo-player">
+            <!-- Substituindo o iframe do Vimeo pelo vídeo HTML5 -->
+            <video id="videoPlayer" controls autoplay>
+                <source src="https://player.vimeo.com/video/1039432899?autoplay=1&controls=0" frameborder="0" allow="autoplay;" style="background: url('https://raw.github.com/gabrielalmeidac3/violaoemvideochamada/c65cd630fc9ae4ff1969a50642f88061624653db/violaoemvideochamada.webp') no-repeat center center; background-size: cover;" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+            <button class="fullscreen-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 3H10V5H5V10H3V3ZM21 3V10H19V5H14V3H21ZM21 21H14V19H19V14H21V21ZM3 21V14H5V19H10V21H3Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
 
-<p class="subtexto" style="font-size:20px; text-align: center; margin-bottom: 10px;">Participe das aulas em videochamada</p>
+        <p id="mensagem-inicial" style="text-align:center; color:gray;">
+            Não feche ou atualize esta página. Em instantes mais informações vão aparecer aqui embaixo.
+        </p>
+    </div>
 
-<div class="main-container">
-
-<p style="text-align:center; color:gray;">Aperte o play e assista o vídeo abaixo com os detalhes</p>
-
-<div class="vimeo-player">
-    <iframe src="https://player.vimeo.com/video/1039432899?autoplay=1&controls=0" frameborder="0" allow="autoplay;" style="background: url('https://raw.github.com/gabrielalmeidac3/violaoemvideochamada/c65cd630fc9ae4ff1969a50642f88061624653db/violaoemvideochamada.webp') no-repeat center center; background-size: cover;"></iframe>
-    <div class="overlay"></div>
-    <button class="play-pause-btn button-play">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 22V2L21 12L3 22Z" fill="white"/>
-        </svg>
-    </button>
-    <button class="fullscreen-btn">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3H10V5H5V10H3V3ZM21 3V10H19V5H14V3H21ZM21 21H14V19H19V14H21V21ZM3 21V14H5V19H10V21H3Z" fill="white"/></svg>
-	</button>
-</div>
-
-<p id="mensagem-inicial" style="text-align:center; color:gray;">
-    Não feche ou atualize esta página. Em instantes mais informações vão aparecer aqui embaixo.
-</p>
-
-</div>
-
-</body>
-
-</html>
-
-<script>
-
-document.querySelectorAll('.vimeo-player').forEach(function(playerContainer) {
-    var fullscreenButton = playerContainer.querySelector('.fullscreen-btn');
-
-    fullscreenButton.addEventListener('click', function() {
-    if (!document.fullscreenElement) {
-        // Tentar entrar em tela cheia
-        playerContainer.requestFullscreen().then(() => {
-            // Após entrar em tela cheia, tente bloquear a orientação
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape-primary').catch(err => {
-                    console.warn('Falha ao bloquear a orientação:', err);
+    <script>
+        // Funcionalidade para tela cheia e bloqueio de orientação
+        document.querySelector('.fullscreen-btn').addEventListener('click', function() {
+            var video = document.getElementById('videoPlayer');
+            if (!document.fullscreenElement) {
+                video.requestFullscreen().then(() => {
+                    // Após entrar em tela cheia, tentar bloquear a orientação
+                    if (screen.orientation && screen.orientation.lock) {
+                        screen.orientation.lock('landscape-primary').catch(err => {
+                            console.warn('Falha ao bloquear a orientação:', err);
+                        });
+                    }
+                }).catch(err => {
+                    console.log(`Erro ao entrar em tela cheia: ${err.message}`);
+                });
+            } else {
+                // Sair do modo de tela cheia e desbloquear orientação
+                document.exitFullscreen().then(() => {
+                    if (screen.orientation && screen.orientation.unlock) {
+                        screen.orientation.unlock();
+                    }
+                }).catch(err => {
+                    console.log(`Erro ao sair de tela cheia: ${err.message}`);
                 });
             }
-        }).catch(err => {
-            console.log(`Erro ao entrar em tela cheia: ${err.message}`);
         });
-    } else {
-        // Sair do modo de tela cheia
-        document.exitFullscreen().then(() => {
-            if (screen.orientation && screen.orientation.unlock) {
-                screen.orientation.unlock();
-            }
-        }).catch(err => {
-            console.log(`Erro ao sair de tela cheia: ${err.message}`);
-        });
-    }
-});
-
-});
-
-
-
-var tmin = 0;
-var tseg = 4;
-  
-var tpitch = (tmin * 60000) + (tseg * 1000);
-setTimeout('show()', tpitch);
-console.log('pitch em:', tpitch,'ms - totalizando',tmin,'min','e',tseg,'seg'); 
-function show(){
-var list = document.getElementsByClassName('ocultar');
-for (var i = 0; i < list.length; i++) {
-    
-    list[i].style.display = 'block';
-    }
-
-        // Oculta o texto "Não feche ou atualize esta página..."
-        var mensagemInicial = document.getElementById('mensagem-inicial');
-    if (mensagemInicial) {
-        mensagemInicial.style.display = 'none';}
-    
-}
-
-src="https://player.vimeo.com/api/player.js"
-
-    // Função para inicializar todos os players do Vimeo
-function initVimeoPlayers() {
-    // Seleciona todos os containers de vídeo com a classe 'vimeo-player'
-    var players = document.querySelectorAll('.vimeo-player');
-
-    players.forEach(function(container) {
-        var iframe = container.querySelector('iframe');
-        var overlay = container.querySelector('.overlay');
-        var toggleButton = container.querySelector('.play-pause-btn');
-
-        // Cria um player para o iframe atual
-        var player = new Vimeo.Player(iframe);
-
-        // Pausa o vídeo após 500ms
-        setTimeout(() => {
-            player.pause();
-        }, 500);
-
-        // Configura eventos para alternar entre play/pause
-        player.on('play', function() {
-            toggleButton.style.display = 'none'; // Esconde o botão quando o vídeo está tocando
-        });
-
-        player.on('pause', function() {
-            toggleButton.style.display = 'block'; // Mostra o botão quando o vídeo é pausado
-        });
-
-        // Adiciona eventos de clique ao overlay e botão
-        overlay.addEventListener('click', function() {
-            player.getPaused().then(function(paused) {
-                if (paused) {
-                    player.play();
-                } else {
-                    player.pause();
-                }
-            });
-        });
-
-        toggleButton.addEventListener('click', function() {
-            player.getPaused().then(function(paused) {
-                if (paused) {
-                    player.play();
-                } else {
-                    player.pause();
-                }
-            });
-        });
-    });
-}
-
-// Inicializar os players assim que a página carregar
-window.onload = initVimeoPlayers;
-
-
-</script>
+    </script>
+</body>
+</html>
