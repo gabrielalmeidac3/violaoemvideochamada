@@ -220,7 +220,9 @@ src="https://www.facebook.com/tr?id=1261048684985838&ev=PageView&noscript=1"
 	</button>
 </div>
 
-<p>Não feche ou atualize esta página. Em instantes mais informações vão aparecer aqui embaixo.</p>
+<p id="mensagem-inicial" style="text-align:center; color:gray;">
+    Não feche ou atualize esta página. Em instantes mais informações vão aparecer aqui embaixo.
+</p>
 	
 <div class= "ocultar">
 
@@ -337,6 +339,10 @@ for (var i = 0; i < list.length; i++) {
     
     list[i].style.display = 'block';
     }
+	// Oculta o texto "Não feche ou atualize esta página..."
+        var mensagemInicial = document.getElementById('mensagem-inicial');
+    if (mensagemInicial) {
+        mensagemInicial.style.display = 'none';}
 }
 
 src="https://player.vimeo.com/api/player.js"
