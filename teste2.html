@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video com Fullscreen</title>
+    <title>Video com Fullscreen e Girar Tela</title>
     <style>
         body {
             display: flex;
@@ -17,6 +17,7 @@
         video {
             width: 100%;
             max-width: 800px;
+            position: relative;
         }
 
         button {
@@ -33,6 +34,26 @@
         button:focus {
             outline: none;
         }
+
+        /* Botão de girar a tela */
+        #rotateBtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 123, 255, 0.7);
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Inicialmente escondido */
+        }
+
+        #rotateBtn:focus {
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -43,11 +64,13 @@
         </video>
         <br>
         <button id="fullscreenBtn">Entrar em Fullscreen</button>
+        <button id="rotateBtn">Girar Tela</button>
     </div>
 
     <script>
         const videoPlayer = document.getElementById('videoPlayer');
         const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const rotateBtn = document.getElementById('rotateBtn');
 
         function enterFullscreen() {
             if (videoPlayer.requestFullscreen) {
@@ -60,6 +83,9 @@
                 videoPlayer.msRequestFullscreen();
             }
 
+            // Exibir o botão de rotação no fullscreen
+            rotateBtn.style.display = 'block';
+
             // Bloquear no modo paisagem
             if (screen.orientation && screen.orientation.lock) {
                 screen.orientation.lock('landscape').catch((error) => {
@@ -68,7 +94,16 @@
             }
         }
 
+        function rotateScreen() {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape-primary').catch((error) => {
+                    console.log('Erro ao tentar girar a tela:', error);
+                });
+            }
+        }
+
         fullscreenBtn.addEventListener('click', enterFullscreen);
+        rotateBtn.addEventListener('click', rotateScreen);
     </script>
 </body>
 </html>
