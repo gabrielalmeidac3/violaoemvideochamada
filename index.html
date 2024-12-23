@@ -14,15 +14,11 @@
     <title>Violão em Videochamada</title>
 <style>
 
-.ocultar {
-    display: none;
-}
-
 body {
     background: radial-gradient(circle at 50% -40%, rgba(255, 127, 0, 1) 10%, rgba(26, 26, 26, 1) 40%);
 	background-attachment: scroll;
     min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
-    max-width: 1000px;
+    
     margin: 0 auto; /* Centraliza horizontalmente */
     padding: 8%;
 	padding-top: 0.3%;
@@ -34,9 +30,8 @@ body {
     text-align: center; /* Centraliza o texto internamente */
 }
 
-
-
 .main-container {
+
 margin: 0 auto;
 max-width: 600px;
 }
@@ -50,15 +45,6 @@ line-height: 1.2
 margin-top: 60px;
 color: gray
 }
-
-.subtexto {
-margin-bottom: 40px;
-}
-
-.ocultar {
-text-align: center;
-}
-
 
 .button-compra {
 	width: 100%;
@@ -77,53 +63,6 @@ text-align: center;
     background-color: green; /* Azul mais escuro no hover */
 }
 
-.vimeo-player {
-            position: relative;
-			max-width: 600px;
-            margin: 0 auto; /* Centraliza o vídeo horizontalmente */
-			aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
-			margin-bottom: 50px;
-			}
-			
-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
-        }
-		
-.play-pause-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-.overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-			aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
-            cursor: pointer; /* Usado para indicar que a área é clicável */
-        }
-
-.vimeo-player:hover .play-pause-btn {
-            display: block; /* Display when hovering over the player */
-        }
-
-.button-play {
-            background-color: rgba(255, 165, 0, 0.7); /* Laranja translúcido */
-        }
-		
 .produto-container {
             text-align: center;
             margin-top: 60px;
@@ -141,38 +80,35 @@ aspect-ratio: 16 / 9; /* Define a proporção de aspecto diretamente */
             font-weight: bold;
         }
 
-.fullscreen-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    padding: 8px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-}
-
-.fullscreen-btn svg {
-    fill: white;
-    width: 20px;
-    height: 20px;
-}
-
-.fullscreen-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.ocultar{
-
-display: none;
-
-}
+.carousel {
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-images img {
+            width: 100%;
+            height: auto;
+        }
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
 
 </style>
 	
@@ -200,51 +136,57 @@ src="https://www.facebook.com/tr?id=1261048684985838&ev=PageView&noscript=1"
 
 <div class="main-container">
 
-<img src="https://lh3.googleusercontent.com/d/1WawZ0rN7_tz1lNVxXTAivhCPPdjC-uEQ=s1000" style="width: 100%; margin-top: 40px; margin-bottom: 40px;">
+<img src="https://lh3.googleusercontent.com/d/1SoF-lkL_VhMuomMMI8cu3vfhVrtSDeCZ=s800" style="width: 100%; margin-top: 40px; margin-bottom: 40px;">
 
 
-<h2 style="font-size: 1.5em;">Como Funciona?</h2>
+<h2 style="font-size: 1.5em; color: rgb(255, 166, 0)">Pra quem é?</h2>
 
-<p style="text-align:center; color:gray;">Aperte o play e assista o vídeo abaixo com os detalhes</p>
-
-<div class="vimeo-player">
-    <iframe src="https://player.vimeo.com/video/1039432899?autoplay=1&controls=0" frameborder="0" allow="autoplay;" style="background: url('https://raw.github.com/gabrielalmeidac3/violaoemvideochamada/c65cd630fc9ae4ff1969a50642f88061624653db/violaoemvideochamada.webp') no-repeat center center; background-size: cover;"></iframe>
-    <div class="overlay"></div>
-    <button class="play-pause-btn button-play">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 22V2L21 12L3 22Z" fill="white"/>
-        </svg>
-    </button>
-    <button class="fullscreen-btn">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3H10V5H5V10H3V3ZM21 3V10H19V5H14V3H21ZM21 21H14V19H19V14H21V21ZM3 21V14H5V19H10V21H3Z" fill="white"/></svg>
-	</button>
+<div align="left">
+    🟢 Já passou dos 40 anos<br><br>
+    🟢 Tem sonho de tocar violão<br><br>
+    🟢 Quer aprender violão como uma terapia<br><br>
+    🟢 Quer aprender violão como um hobbie <br><br>
+    🟢 Quer tocar em casa pra passar o tempo<br><br>
+    🟢 Precisa de um professor pra pedir ajuda<br><br>
+    🟢 Não quer ser um(a) grande profissional mas quer tocar algumas músicas que te deixa feliz<br><br>
 </div>
 
-<p id="mensagem-inicial" style="text-align:center; color:gray;">
-    Não feche ou atualize esta página. Em instantes mais informações vão aparecer aqui embaixo.
-</p>
-	
-<div class= "ocultar">
+<h2 style="font-size: 1.5em; color: rgb(255, 166, 0)">O que vou aprender?</h2>
 
-<h2 style="font-size: 1.5em;">Depoimentos</h2>
+<div align="left">
+    🟢 Tocar músicas no violão mesmo se você nunca tiver pegado no violão na vida<br><br>
+</div>
 
-<div class="vimeo-player">
-    <iframe src="https://player.vimeo.com/video/1039464673?autoplay=1&controls=0" frameborder="0" allow="autoplay;" style="background: url('https://raw.github.com/gabrielalmeidac3/violaoemvideochamada/c65cd630fc9ae4ff1969a50642f88061624653db/depoimentos.webp') no-repeat center center; background-size: cover;"></iframe>
-    <div class="overlay"></div>
-    <button class="play-pause-btn button-play">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 22V2L21 12L3 22Z" fill="white"/>
-        </svg>
-    </button>
-    <button class="fullscreen-btn">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 3H10V5H5V10H3V3ZM21 3V10H19V5H14V3H21ZM21 21H14V19H19V14H21V21ZM3 21V14H5V19H10V21H3Z" fill="white"/>
-</svg>
-</button>
+<h2 style="font-size: 1.5em; color: rgb(255, 166, 0)">Como vou aprender?</h2>
+
+<div align="left">
+    🟢 Através das aulas em videochamada onde vou te ouvir e te passar o que você precisa<br><br>
+    🟢 Com as aulas gravadas do meu curso também<br><br>
+    🟢 Vai aprender no seu próprio tempo SEM PRESSA<br><br>
+</div>
+
+<h2 style="font-size: 1.5em; color: rgb(255, 166, 0)">Depoimentos dos alunos</h2>
+
+<div class="carousel" style="margin-bottom: 100px;">
+    <div class="carousel-images">
+        <img src="https://lh3.googleusercontent.com/d/17ySbNrGaJ9BBkEOen-ZJRcf8_CG_CQko=s800" alt="Imagem 1">
+        <img src="https://lh3.googleusercontent.com/d/1HRIDbU4o4lu2ADf5Y1Km1HMqfJguvf0n=s800" alt="Imagem 2">
+        <img src="https://lh3.googleusercontent.com/d/1Pv8n4l8dYNWu58yz3LbmsxSUCEhxcmiW=s800" alt="Imagem 3">
+        <img src="https://lh3.googleusercontent.com/d/1XJv-69n48m-FQwYeorKYV-XKkTYDEjSR=s800" alt="Imagem 4">
+        <img src="https://lh3.googleusercontent.com/d/1jlNSNdWAhCm4ebQPyHwh2J9dQ9GpBmTD=s800" alt="Imagem 5">
+        <img src="https://lh3.googleusercontent.com/d/1pxc8027lO5xFaRfJ3a4zGNajInIQpiCF=s800" alt="Imagem 6">
+        <img src="https://lh3.googleusercontent.com/d/1qJhDOf0DNZIff_NaJOp7tm8F5eONK5II=s800" alt="Imagem 7">
+        <img src="https://lh3.googleusercontent.com/d/1rI5tcNG-ecKpGHDdGkkFk1lQWTFeDOGR=s800" alt="Imagem 8">
+        <img src="https://lh3.googleusercontent.com/d/1t1UVncTVfGklqRYc4bT25gox5sQfQ1m2=s800" alt="Imagem 9">
+    </div>
+    <div class="carousel-buttons">
+        <button class="carousel-button" id="prev">&#10094;</button>
+        <button class="carousel-button" id="next">&#10095;</button>
+    </div>
 </div>
 
 
-<h2 style="font-size: 1.2em; margin-bottom: 10%;">O que você vai receber de fato:</h2>
+<h2 style="font-size: 1.2em; margin-bottom: 10%; color: rgb(255, 166, 0)">O que você vai receber de fato:</h2>
 
 <h2 style="font-size: 1.2em;">1. Aulas em videochamada</h2>
 
@@ -260,7 +202,7 @@ src="https://www.facebook.com/tr?id=1261048684985838&ev=PageView&noscript=1"
 
     <div class="produto-container">
         <div class="detalhes">
-            <p style="font-size: 1.2em; font-weight: bold;">Resumo:</p>
+            <p style="font-size: 1.2em; font-weight: bold; color: rgb(255, 166, 0)">Resumo:</p>
             <img src="https://lh3.googleusercontent.com/d/1m30KFHVinuj4O9AkIYs4n0mWRGpi7ioN=s800" style="width: 60%; margin-top: 10px;">
             <ul style="list-style-type: none; padding: 0;">
                 <li>✅ Aulas em videochamada toda semana</li>
@@ -275,12 +217,16 @@ src="https://www.facebook.com/tr?id=1261048684985838&ev=PageView&noscript=1"
 			</p>
 			<p class="preco-promocional" style="margin-bottom: 0px;">R$ 10,00</p>
 			<p style="font-size: 1em; margin-bottom: 5%;">o primeiro mês</p>
+            <p style="color: gray; margin-bottom: 20px">Depois do primeiro mês fica 80 reais por mês e você escolhe se vai continuar ou não</p>
         </div>
 		<a href="https://go.perfectpay.com.br/PPU38CPA7FO" style="text-decoration:none" target="_top"><button class="button-compra">Eu quero</button></a>
     </div>
 
+<img src="https://lh3.googleusercontent.com/d/1O1CScX1hPhyfz23eKAmwYjdYhYsptsL8=s800" style="margin-top: 30px;width: 200px; margin-bottom: 10px;">
 
-<h2 style="font-size: 1.2em; margin-top: 80px;">Porque é tão barato?</h2>
+<p style="color: gray;">Confio tanto nas aulas de violão em videochamada que se você não gostar por qualquer motivo, você pode pedir seu dinheiro de volta sem problemas em até 30 dias.</p>
+
+<h2 style="font-size: 1.2em; margin-top: 80px; color: rgb(255, 166, 0)">Porque é tão barato?</h2>
 <p>O primeiro mês vai ficar por só R$ 10,00 pra você conhecer de forma mais fácil.<br>E se você gostar, você continua pelo preço normal de R$ 80,00 por mês.</p>
 
 
@@ -295,119 +241,30 @@ src="https://www.facebook.com/tr?id=1261048684985838&ev=PageView&noscript=1"
 
 </div>
 
-</div>
-
 </body>
 
 </html>
-
 <script>
+//inicio do código do carrossel
+const images = document.querySelector('.carousel-images');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let index = 0;
 
-document.querySelectorAll('.vimeo-player').forEach(function(playerContainer) {
-    var fullscreenButton = playerContainer.querySelector('.fullscreen-btn');
-
-    fullscreenButton.addEventListener('click', function() {
-        if (!document.fullscreenElement) {
-            // Entrar no modo de tela cheia
-            playerContainer.requestFullscreen().then(() => {
-                // Alterar a orientação para paisagem
-                if (screen.orientation && screen.orientation.lock) {
-                    screen.orientation.lock('landscape-primary').catch(err => {
-                        console.warn('Falha ao bloquear a orientação:', err);
-                    });
-                }
-            }).catch(err => {
-                console.log(`Erro ao entrar em tela cheia: ${err.message}`);
-            });
-        } else {
-            // Sair do modo de tela cheia e desbloquear orientação
-            document.exitFullscreen().then(() => {
-                if (screen.orientation && screen.orientation.unlock) {
-                    screen.orientation.unlock();
-                }
-            }).catch(err => {
-                console.log(`Erro ao sair de tela cheia: ${err.message}`);
-            });
+        function updateCarousel() {
+            const offset = -index * 100;
+            images.style.transform = `translateX(${offset}%)`;
         }
-    });
-});
 
-
-
-var tmin = 0;
-var tseg = 7;
-  
-var tpitch = (tmin * 60000) + (tseg * 1000);
-setTimeout('show()', tpitch);
-console.log('pitch em:', tpitch,'ms - totalizando',tmin,'min','e',tseg,'seg'); 
-function show(){
-var list = document.getElementsByClassName('ocultar');
-for (var i = 0; i < list.length; i++) {
-    
-    list[i].style.display = 'block';
-    }
-
-        // Oculta o texto "Não feche ou atualize esta página..."
-        var mensagemInicial = document.getElementById('mensagem-inicial');
-    if (mensagemInicial) {
-        mensagemInicial.style.display = 'none';}
-    
-}
-
-src="https://player.vimeo.com/api/player.js"
-
-    // Função para inicializar todos os players do Vimeo
-function initVimeoPlayers() {
-    // Seleciona todos os containers de vídeo com a classe 'vimeo-player'
-    var players = document.querySelectorAll('.vimeo-player');
-
-    players.forEach(function(container) {
-        var iframe = container.querySelector('iframe');
-        var overlay = container.querySelector('.overlay');
-        var toggleButton = container.querySelector('.play-pause-btn');
-
-        // Cria um player para o iframe atual
-        var player = new Vimeo.Player(iframe);
-
-        // Pausa o vídeo após 500ms
-        setTimeout(() => {
-            player.pause();
-        }, 500);
-
-        // Configura eventos para alternar entre play/pause
-        player.on('play', function() {
-            toggleButton.style.display = 'none'; // Esconde o botão quando o vídeo está tocando
+        prevButton.addEventListener('click', () => {
+            index = (index === 0) ? images.children.length - 1 : index - 1;
+            updateCarousel();
         });
 
-        player.on('pause', function() {
-            toggleButton.style.display = 'block'; // Mostra o botão quando o vídeo é pausado
+        nextButton.addEventListener('click', () => {
+            index = (index === images.children.length - 1) ? 0 : index + 1;
+            updateCarousel();
         });
-
-        // Adiciona eventos de clique ao overlay e botão
-        overlay.addEventListener('click', function() {
-            player.getPaused().then(function(paused) {
-                if (paused) {
-                    player.play();
-                } else {
-                    player.pause();
-                }
-            });
-        });
-
-        toggleButton.addEventListener('click', function() {
-            player.getPaused().then(function(paused) {
-                if (paused) {
-                    player.play();
-                } else {
-                    player.pause();
-                }
-            });
-        });
-    });
-}
-
-// Inicializar os players assim que a página carregar
-window.onload = initVimeoPlayers;
-
+//fim do código do carrosel
 
 </script>
